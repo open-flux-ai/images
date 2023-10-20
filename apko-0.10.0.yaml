@@ -1,0 +1,25 @@
+contents:
+  keyring:
+    - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+  repositories:
+    - https://packages.wolfi.dev/os
+  packages:
+    - ca-certificates-bundle
+    - wolfi-base
+    - alpine-keys
+    - wolfi-keys
+    - apko=0.10.0-r0
+
+archs:
+  - x86_64
+  - aarch64
+
+paths:
+  - path: /work
+    type: directory
+    permissions: 0o777
+
+entrypoint:
+  command: /usr/bin/apko
+
+cmd: --help
