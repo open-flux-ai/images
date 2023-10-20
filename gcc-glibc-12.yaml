@@ -1,0 +1,32 @@
+contents:
+  keyring:
+    - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+  repositories:
+    - https://packages.wolfi.dev/os
+  packages:
+    - busybox=1.36.1-r2
+    - build-base=1-r5
+    - git    
+    - gcc=12.2.0-r9
+    - gcc-12=12.3.0-r4
+
+annotations:
+  "org.opencontainers.image.authors": "Open Flux AI https://github.com/open-flux-ai"
+  "org.opencontainers.image.url": "https://github.com/open-flux-ai/images/tree/main/references/gcc-libc-12"
+  "org.opencontainers.image.source": "https://github.com/open-flux-ai/images/tree/main/gcc-libc-12.yaml"
+
+archs:
+- x86_64
+- aarch64
+
+paths:
+- path: /work
+  type: directory
+  permissions: 0o777
+
+work-dir: /work
+
+entrypoint:
+  command: /usr/bin/gcc
+
+cmd: --help

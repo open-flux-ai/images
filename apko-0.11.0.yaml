@@ -7,12 +7,12 @@ contents:
     - wolfi-base
     - alpine-keys
     - wolfi-keys
-    - apko=0.10.0-r6
+    - apko=0.11.2-r0
 
 annotations:
   "org.opencontainers.image.authors": "Open Flux AI https://github.com/open-flux-ai"
-  "org.opencontainers.image.url": "https://github.com/open-flux-ai/images/tree/main/references/apk-0.10.0"
-  "org.opencontainers.image.source": "https://github.com/open-flux-ai/images/tree/main/apk-0.10.0.yaml"
+  "org.opencontainers.image.url": "https://github.com/open-flux-ai/images/tree/main/references/apk-0.11.0"
+  "org.opencontainers.image.source": "https://github.com/open-flux-ai/images/tree/main/apk-0.11.0.yaml"
 
 archs:
   - x86_64

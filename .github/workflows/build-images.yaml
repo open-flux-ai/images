@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-    workflow_dispatch: {}
+  workflow_dispatch: {}
 
 permissions:
   contents: read
@@ -16,14 +16,77 @@ jobs:
       contents: write
       id-token: write
       packages: write
+    strategy:
+      matrix:
+        include:
+          - config: 'apko-0.10.0.yaml'
+            tag: 'ghcr.io/open-flux-ai/images/apko:0.10.0'
+          - config: 'apko-0.11.0.yaml'
+            tag: 'ghcr.io/open-flux-ai/images/apko:0.11.0'
+
+          - config: 'bash-5.2.yaml'
+            tag: 'ghcr.io/open-flux-ai/images/bash:5.2'
+
+          - config: 'busybox-1.36.yaml'
+            tag: 'ghcr.io/open-flux-ai/images/busybox:1.36'
+
+          - config: 'cmake-gcc13-3.27.yaml'
+            tag: 'ghcr.io/open-flux-ai/images/cmake-gcc13:3.27'
+
+          - config: 'gcc-glibc-12.yaml'
+            tag: 'ghcr.io/open-flux-ai/images/gcc-glibc:12'
+
+          - config: 'gcc-glibc-13.yaml'
+            tag: 'ghcr.io/open-flux-ai/images/gcc-glibc:13'
+
+          - config: 'glibc-dynamic-2.38.yaml'
+            tag: 'ghcr.io/open-flux-ai/images/glibc-dynamic:2.38'
+
+          - config: 'go-1.20.yaml'
+            tag: 'ghcr.io/open-flux-ai/images/go:1.20.11'
+
+          - config: 'node-18.yaml'
+            tag: 'ghcr.io/open-flux-ai/images/node:18'
+          - config: 'node-18-dev.yaml'
+            tag: 'ghcr.io/open-flux-ai/images/node:18-dev'
+
+          - config: 'postgres-15.4.yaml'
+            tag: 'ghcr.io/open-flux-ai/images/postgres:15.4'
+          - config: 'postgres-15.5.yaml'
+            tag: 'ghcr.io/open-flux-ai/images/postgres:15.5'
+
+          - config: 'python-3.10.yaml'
+            tag: 'ghcr.io/open-flux-ai/images/python:3.10'
+          - config: 'python-3.10-dev.yaml'
+            tag: 'ghcr.io/open-flux-ai/images/python:3.10-dev'
+
+          - config: 'python-3.11.yaml'
+            tag: 'ghcr.io/open-flux-ai/images/python:3.11'
+          - config: 'python-3.11-dev.yaml'
+            tag: 'ghcr.io/open-flux-ai/images/python:3.11-dev'
+
+          - config: 'python-3.12.yaml'
+            tag: 'ghcr.io/open-flux-ai/images/python:3.12'
+          - config: 'python-3.12-dev.yaml'
+            tag: 'ghcr.io/open-flux-ai/images/python:3.12-dev'
+
+          - config: 'static.yaml'
+            tag: 'ghcr.io/open-flux-ai/images/static:2023c'
+
+          - config: 'static.yaml'
+            tag: 'ghcr.io/open-flux-ai/images/static:latest'
+
     steps:
       - name: Checkout
         uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+
       - name: Setup QEMU
         uses: docker/setup-qemu-action@68827325e0b33c7199eb31dd4e31fbe9023e06e3 # v3.0.0
+
       - name: Setup Docker Buildx
         id: buildx
         uses: docker/setup-buildx-action@f95db51fddba0c2d1ec667646a06c2ce06100226 # v3.0.0
+
       - name: Login to GitHub Container Registry
         uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
         with:
@@ -31,12 +94,9 @@ jobs:
           username: chanwit
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: distroless/actions/apko-publish@main
+      - name: Publish
+        uses: chainguard-images/actions/apko-publish@main
         with:
-          config: apko-0.10.0.yaml
-          tag: ghcr.io/llm-gitops/images/apko:0.10.0
-
-      - uses: distroless/actions/apko-publish@main
-        with:
-          config: postgres-15.4.yaml
-          tag: ghcr.io/llm-gitops/images/postgres:15.4
+          apko-image: ghcr.io/open-flux-ai/images/apko:0.10.0
+          config: ${{ matrix.config }}
+          tag: ${{ matrix.tag }}

@@ -1,0 +1,28 @@
+contents:
+  keyring:
+    - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+  repositories:
+    - https://packages.wolfi.dev/os
+  packages:
+    - glibc=2.38-r5
+    - libgcc=13.2.0-r3
+    - libstdc++=13.2.0-r3
+
+annotations:
+  "org.opencontainers.image.authors": "Open Flux AI https://github.com/open-flux-ai"
+  "org.opencontainers.image.url": "https://github.com/open-flux-ai/images/tree/main/references/glibc-dynamic-2.38"
+  "org.opencontainers.image.source": "https://github.com/open-flux-ai/images/tree/main/glibc-dynamic-2.38.yaml"
+
+archs:
+- x86_64
+- aarch64
+
+accounts:
+  groups:
+    - groupname: nonroot
+      gid: 65532
+  users:
+    - username: nonroot
+      uid: 65532
+      gid: 65532
+  run-as: 65532

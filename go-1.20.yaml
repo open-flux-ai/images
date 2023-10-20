@@ -1,0 +1,40 @@
+contents:
+  keyring:
+    - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+  repositories:
+    - https://packages.wolfi.dev/os
+  packages:
+    - busybox
+    - build-base
+    - git
+    - openssh
+    - go-1.20=1.20.11-r0
+
+annotations:
+  "org.opencontainers.image.authors": "Open Flux AI https://github.com/open-flux-ai"
+  "org.opencontainers.image.url": "https://github.com/open-flux-ai/images/tree/main/references/go-1.20"
+  "org.opencontainers.image.source": "https://github.com/open-flux-ai/images/tree/main/go-1.20.yaml"
+
+archs:
+- x86_64
+- aarch64
+
+accounts:
+  groups:
+    - groupname: nonroot
+      gid: 65532
+  users:
+    - username: nonroot
+      uid: 65532
+      gid: 65532
+  run-as: 0
+
+environment:
+  GODEBUG: tarinsecurepath=0,zipinsecurepath=0
+  # See: https://go.dev/doc/toolchain
+  GOTOOLCHAIN: local+auto
+
+entrypoint:
+  command: /usr/bin/go
+
+cmd: help

@@ -1,0 +1,32 @@
+contents:
+  keyring:
+    - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+  repositories:
+    - https://packages.wolfi.dev/os
+  packages:
+    - wolfi-base
+    - build-base=1-r5
+    - python-3.10=3.10.13-r1
+    - python-3.10-dev=3.10.13-r1
+    - py3.10-pip=23.3.1-r0
+
+annotations:
+  "org.opencontainers.image.authors": "Open Flux AI https://github.com/open-flux-ai"
+  "org.opencontainers.image.url": "https://github.com/open-flux-ai/images/tree/main/references/python-3.10-dev"
+  "org.opencontainers.image.source": "https://github.com/open-flux-ai/images/tree/main/python-3.10-dev.yaml"
+
+archs:
+  - x86_64
+
+entrypoint:
+  command: /usr/bin/python
+
+accounts:
+  groups:
+    - groupname: nonroot
+      gid: 65532
+  users:
+    - username: nonroot
+      uid: 65532
+      gid: 65532
+  run-as: 65532
