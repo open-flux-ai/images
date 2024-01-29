@@ -4,7 +4,7 @@ contents:
   repositories:
     - https://packages.wolfi.dev/os
   packages:
-    - python-3.10=3.10.13-r1
+    - python-3.10=3.10.13-r3
 
 annotations:
   "org.opencontainers.image.authors": "Open Flux AI https://github.com/open-flux-ai"

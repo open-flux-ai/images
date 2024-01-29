@@ -7,9 +7,9 @@ contents:
     - wolfi-base
     - build-base=1-r5
     - git
-    - python-3.10=3.10.13-r1
-    - python-3.10-dev=3.10.13-r1
-    - py3.10-pip=23.3.1-r0
+    - python-3.10=3.10.13-r3
+    - python-3.10-dev=3.10.13-r3
+    - py3.10-pip=23.3.2-r0
 
 annotations:
   "org.opencontainers.image.authors": "Open Flux AI https://github.com/open-flux-ai"
