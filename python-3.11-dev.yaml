@@ -6,7 +6,16 @@ contents:
   packages:
     - wolfi-base
     - build-base=1-r5
-    - git    
+    - git
+    # == CVE patches
+    - glibc=2.38-r11
+    - glibc-locale-posix=2.38-r11
+    - ld-linux=2.38-r11
+    - libcrypt1=2.38-r11
+    - libcrypto3=3.2.1-r0
+    - libssl3=3.2.1-r0
+    - openssl-config=3.2.1-r0
+    # == CVE patches
     - python-3.11=3.11.7-r1
     - python-3.11-dev=3.11.7-r1
     - py3.11-pip=23.3.2-r0
