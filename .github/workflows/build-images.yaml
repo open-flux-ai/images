@@ -54,6 +54,8 @@ jobs:
             tag: 'ghcr.io/open-flux-ai/images/postgres:15.4'
           - config: 'postgres-15.5.yaml'
             tag: 'ghcr.io/open-flux-ai/images/postgres:15.5'
+          - config: 'postgres-16.5.yaml'
+            tag: 'ghcr.io/open-flux-ai/images/postgres:16.5'
 
           - config: 'python-3.10.yaml'
             tag: 'ghcr.io/open-flux-ai/images/python:3.10'
